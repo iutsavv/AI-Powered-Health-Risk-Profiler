@@ -114,8 +114,7 @@ function App() {
             <footer className="disclaimer">
                 <p className="disclaimer__text">
                     <Sparkles size={16} />
-                    This tool provides general wellness information only and does not constitute medical advice.
-                    Always consult a healthcare professional for medical concerns.
+                    Made by Utsavv Kumar
                 </p>
             </footer>
         </div>
