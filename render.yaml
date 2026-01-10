@@ -1,0 +1,38 @@
+# Render Blueprint - One-click deployment configuration
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Backend API Service
+  - type: web
+    name: health-risk-api
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGINS
+        sync: false  # Set manually after deployment
+
+  # Frontend Static Site
+  - type: web
+    name: health-risk-analyzer
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: health-risk-api
+          property: host
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://health-risk-api.onrender.com/api/*
