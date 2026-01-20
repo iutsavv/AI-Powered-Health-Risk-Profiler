@@ -175,7 +175,3 @@ Diet: High sugar
 - **Frontend**: React 18, Vite
 - **OCR**: Tesseract.js
 - **Styling**: CSS with glassmorphism design
-
-## License
-
-MIT
